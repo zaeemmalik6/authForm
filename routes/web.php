@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use App\Http\Controllers\Auth\LoginController;
 | contains the "web;
 |
 */
+
+Route::get('/send-mail', [EmailController::class, 'sendMailToAll'])->name('sendMailToAll');
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,3 +35,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/studentDashboard', [StudentController::class, 'studentDashboard'])->name('studentDashboard')->middleware('student');
     Route::get('/logout', [HomeController::class, 'logout'])->name('logout.perform');
 });
+
+Route::get('/send-mail', [EmailController::class, 'sendMailToAll'])->name('sendMailToAll');
